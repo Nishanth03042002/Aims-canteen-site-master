@@ -114,21 +114,10 @@ const upload = multer({
 
 // ==================== STATIC FILES & ROUTES ====================
 
-// Serve static assets (CSS, JS, images)
-app.use(express.static(path.join(__dirname, '../frontend')));
-
-// Clean URL routes for frontend pages
-app.get(['/client-side', '/client-side.html'], (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../frontend/client-side.html'));
-});
-
-app.get(['/admin-side', '/admin-side.html'], (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../frontend/admin-side.html'));
-});
-
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../frontend/index.html'));
-});
+app.use(cors({
+  origin: 'https://aimscanteenfrontend-production.up.railway.app',
+  credentials: true,
+}));
 
 // ==================== AUTHENTICATION MIDDLEWARE ====================
 
